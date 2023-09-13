@@ -149,7 +149,7 @@ const Input = () => {
                 </span>
                 {/* <input type="text" value={data.value} /> */}
                 <TrashIcon
-                  className="h-4 w-4 max-sm:h-7 max-sm:w-7 max-md:h-5  max-md:w-5 max-lg:h-7 max-lg:w-7  cursor-pointer"
+                  className="h-4 w-4 max-sm:h-7 max-sm:w-7 max-md:h-5  max-md:w-5 max-lg:h-7 max-lg:w-7 mr-2 ml-2  cursor-pointer"
                   onClick={(e) => handleDelete(e, todo)}
                 />
                 <PencilIcon
