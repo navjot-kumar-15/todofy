@@ -6,7 +6,11 @@ import { registerUser } from "../features/auth/authSlice";
 import Loader2 from "../components/Loader2";
 
 const SignUp = () => {
+<<<<<<< HEAD
   const { isLoading } = useSelector((state) => state.auth);
+=======
+    const { isLoading } = useSelector((state) => state.auth);
+>>>>>>> 599a2310fc350a0705f395122470ca28ce6cb260
   const {
     register,
     handleSubmit,
