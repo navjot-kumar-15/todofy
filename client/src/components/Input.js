@@ -88,7 +88,7 @@ const Input = () => {
               >
                 <input
                   type="checkbox"
-                  className="h-3 w-3 ml-4 max-sm:ml-0"
+                  className="h-3 w-3 ml-4 max-sm:-ml-3"
                   checked={todo.status === "done" ? true : false}
                   onChange={(e) => handleChange(e, todo, index)}
                 />
