@@ -145,7 +145,7 @@ const Input = () => {
                   </p>
                 )}
                 <span className="text-red-500 mt-1 ml-4">
-                  {todo.status === "done" && <Done />}{" "}
+                  {todo.status === "done" && !open && <Done />}{" "}
                 </span>
                 {/* <input type="text" value={data.value} /> */}
                 <TrashIcon
