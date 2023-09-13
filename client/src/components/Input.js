@@ -117,6 +117,7 @@ const Input = () => {
                       onClick={() => {
                         setOpen(!open);
                         dispatch(updateTodoAsync(user));
+                        toast("Todo updated successfully.");
                       }}
                     >
                       Edit
