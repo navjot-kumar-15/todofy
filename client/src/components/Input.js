@@ -9,6 +9,7 @@ import {
   updateTodoPatch,
 } from "../features/todo/todoSlice";
 import Done from "./Done";
+import Loader from "./Loader";
 
 const Input = () => {
   const [open, setOpen] = useState(false);
@@ -51,7 +52,7 @@ const Input = () => {
   return (
     <>
       {isLoading && (
-        <p className="text-center translate-y-[7rem]">Loading...</p>
+        <p className="text-center translate-y-[7rem]">{<Loader />}</p>
       )}
 
       <div className=" h-full">
