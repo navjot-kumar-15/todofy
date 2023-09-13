@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../features/auth/authSlice";
@@ -12,6 +12,7 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -31,6 +32,7 @@ const SignUp = () => {
             onSubmit={handleSubmit((data) => {
               dispatch(registerUser(data));
               reset();
+              navigate("/");
             })}
           >
             <div>
@@ -104,6 +106,9 @@ const SignUp = () => {
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={() => {
+                  return <Navigate to="/login" />;
+                }}
               >
                 Sign up
               </button>

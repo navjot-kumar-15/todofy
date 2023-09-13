@@ -5,7 +5,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
-import Protected from "./features/Protected";
 import { useDispatch } from "react-redux";
 import { getAllTodoAsyn } from "./features/todo/todoSlice";
 
