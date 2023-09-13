@@ -3,8 +3,10 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../features/auth/authSlice";
+import Loader2 from "../components/Loader2";
 
 const SignUp = () => {
+  const { isLoading } = useSelector((state) => state.auth);
   const {
     register,
     handleSubmit,
@@ -110,7 +112,7 @@ const SignUp = () => {
                   return <Navigate to="/login" />;
                 }}
               >
-                Sign up
+                {isLoading ? <Loader2 /> : " Sign up"}
               </button>
             </div>
           </form>
