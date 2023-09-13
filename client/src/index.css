@@ -19,11 +19,11 @@ body {
     radial-gradient(circle closest-side, #9c9ca0 90%, #0000) 100% 50%;
   background-size: calc(100% / 3) 13.4px;
   background-repeat: no-repeat;
-  animation: dots-7ar3yq 1s infinite linear;
+  animation: dots-2 1s infinite linear;
 }
 
 
-@keyframes dots-7ar3yq {
+@keyframes dots-2 {
   20% {
     background-position: 0% 0%, 50% 50%, 100% 50%;
   }
