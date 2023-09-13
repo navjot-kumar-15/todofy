@@ -51,11 +51,7 @@ const Input = () => {
 
   return (
     <>
-<<<<<<< HEAD
       {isLoading && (
-=======
-       {isLoading && (
->>>>>>> 599a2310fc350a0705f395122470ca28ce6cb260
         <p className="text-center translate-y-[7rem]">{<Loader />}</p>
       )}
 

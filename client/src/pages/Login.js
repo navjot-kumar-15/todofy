@@ -4,11 +4,9 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/auth/authSlice";
 import Loader2 from "../components/Loader2";
-<<<<<<< HEAD
+
 import Loader from "../components/Loader";
 
-=======
->>>>>>> 599a2310fc350a0705f395122470ca28ce6cb260
 const Login = () => {
   const {
     register,
