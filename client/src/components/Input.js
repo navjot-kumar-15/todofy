@@ -23,8 +23,12 @@ const Input = () => {
   const { todos, isLoading } = useSelector((state) => state.todo);
 
   const handleSubmitTodo = () => {
-    dispatch(createTodoAsyn(changeValue));
-    setChangeValue("");
+    if (changeValue?.text?.length > 0) {
+      dispatch(createTodoAsyn(changeValue));
+      setChangeValue("");
+    } else {
+      alert("Please enter somthing");
+    }
   };
 
   const handleDelete = (e, dataValue) => {
@@ -69,7 +73,7 @@ const Input = () => {
             }
           />
           <button
-            className="border-none bg-green-500 text-white p-2"
+            className="border-none bg-green-500 shadow-3d text-white p-2"
             onClick={handleSubmitTodo}
           >
             Add task
