@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TrashIcon, PencilIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import {
   createTodoAsyn,
   deleteTodoAsync,
@@ -14,7 +15,6 @@ import Loader from "./Loader";
 const Input = () => {
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(-1);
-  const [statusValue, setStatusValue] = useState("pending");
   const [changeValue, setChangeValue] = useState("");
   const [user, setUser] = useState("");
   const [id, setId] = useState("");
@@ -25,6 +25,7 @@ const Input = () => {
   const handleSubmitTodo = () => {
     if (changeValue?.text?.length > 0) {
       dispatch(createTodoAsyn(changeValue));
+      toast("Todo created😊");
       setChangeValue("");
     } else {
       alert("Please add todo...");
@@ -33,13 +34,15 @@ const Input = () => {
 
   const handleDelete = (e, dataValue) => {
     dispatch(deleteTodoAsync(dataValue._id));
+    toast("Todo deleted successfully.");
   };
 
-  const handleChange = (e, data, index) => {
+  const handleCheckbox = (e, data, index) => {
     let updateData = { ...data, status: "done" };
 
     if (e?.target?.checked) {
       dispatch(updateTodoPatch(updateData));
+      toast("Hey!! congrats you have completed your goal🎊🎉.");
     } else {
       const updateData = { ...data, status: "pending" };
       dispatch(updateTodoPatch(updateData));
@@ -95,7 +98,7 @@ const Input = () => {
                   type="checkbox"
                   className="h-3 w-3 ml-4 max-sm:-ml-4"
                   checked={todo.status === "done" ? true : false}
-                  onChange={(e) => handleChange(e, todo, index)}
+                  onChange={(e) => handleCheckbox(e, todo, index)}
                 />
 
                 {openEdit === index && open ? (

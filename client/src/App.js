@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-
-import axios from "axios";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import { useDispatch } from "react-redux";
 import { getAllTodoAsyn } from "./features/todo/todoSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +27,23 @@ const App = () => {
   useEffect(() => {
     dispatch(getAllTodoAsyn());
   }, []);
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+    </>
+  );
 };
 
 export default App;
