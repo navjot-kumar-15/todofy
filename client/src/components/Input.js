@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TrashIcon, PencilIcon } from "@heroicons/react/24/outline";
+import { TrashIcon, PencilIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createTodoAsyn,
@@ -9,8 +9,6 @@ import {
   updateTodoPatch,
 } from "../features/todo/todoSlice";
 import Done from "./Done";
-import { useForm } from "react-hook-form";
-import { updateTodo } from "../features/todo/todoAPI";
 
 const Input = () => {
   const [open, setOpen] = useState(false);
@@ -112,6 +110,22 @@ const Input = () => {
                     >
                       Edit
                     </button>
+                    <span onClick={() => setOpen(false)}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </span>
                   </>
                 ) : (
                   <p
@@ -127,11 +141,11 @@ const Input = () => {
                 </span>
                 {/* <input type="text" value={data.value} /> */}
                 <TrashIcon
-                  className="h-4 w-4 max-sm:h-5 max-sm:w-5 max-md:h-5  max-md:w-5 max-lg:h-7 max-lg:w-7  cursor-pointer"
+                  className="h-4 w-4 max-sm:h-7 max-sm:w-7 max-md:h-5  max-md:w-5 max-lg:h-7 max-lg:w-7  cursor-pointer"
                   onClick={(e) => handleDelete(e, todo)}
                 />
                 <PencilIcon
-                  className="h-4 w-4 max-sm:h-5 max-md:h-5 max-md:w-5 max-lg:h-7 max-lg:w-7  max-sm:w-5 cursor-pointer"
+                  className="h-4 w-4 max-sm:h-7  max-md:h-5 max-md:w-5 max-lg:h-7 max-lg:w-7  max-sm:w-7 cursor-pointer"
                   onClick={() => {
                     setOpenEdit(index);
                     setOpen(!open);

@@ -26,6 +26,8 @@ function classNames(...classes) {
 }
 
 const Navbar = ({ children }) => {
+  const userInfo = JSON.parse(localStorage.getItem("user"));
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
@@ -49,11 +51,10 @@ const Navbar = ({ children }) => {
                           <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span className="absolute -inset-1.5" />
                             <span className="sr-only">Open user menu</span>
-                            <img
-                              className="h-8 w-8 rounded-full"
-                              src={user.imageUrl}
-                              alt=""
-                            />
+                            <p className="text-white text-xl">
+                              {" "}
+                              {userInfo.name}{" "}
+                            </p>
                           </Menu.Button>
                         </div>
                         <Transition
@@ -114,18 +115,11 @@ const Navbar = ({ children }) => {
                 <div className="border-t border-gray-700 pb-3 pt-4">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                      <img
-                        className="h-10 w-10 rounded-full"
-                        src={user.imageUrl}
-                        alt=""
-                      />
+                      <p className="text-white text-xl"> {userInfo.name} </p>
                     </div>
                     <div className="ml-3">
-                      <div className="text-base font-medium leading-none text-white">
-                        {user.name}
-                      </div>
                       <div className="text-sm font-medium leading-none text-gray-400">
-                        {user.email}
+                        {userInfo.email}
                       </div>
                     </div>
                     <button
@@ -133,8 +127,6 @@ const Navbar = ({ children }) => {
                       className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
                       <span className="absolute -inset-1.5" />
-                      <span className="sr-only">View notifications</span>
-                      <BellIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
                   <div className="mt-3 space-y-1 px-2">
