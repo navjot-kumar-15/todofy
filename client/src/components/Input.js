@@ -27,7 +27,7 @@ const Input = () => {
       dispatch(createTodoAsyn(changeValue));
       setChangeValue("");
     } else {
-      alert("Please enter somthing");
+      alert("Please add todo...");
     }
   };
 
