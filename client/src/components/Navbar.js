@@ -115,10 +115,13 @@ const Navbar = ({ children }) => {
                 <div className="border-t border-gray-700 pb-3 pt-4">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                      <p className="text-white text-xl"> {userInfo.name} </p>
+                      <p className="text-white text-xl max-sm:-ml-6">
+                        {" "}
+                        {userInfo.name}{" "}
+                      </p>
                     </div>
                     <div className="ml-3">
-                      <div className="text-sm font-medium leading-none text-gray-400">
+                      <div className="text-sm  font-medium leading-none text-gray-400">
                         {userInfo.email}
                       </div>
                     </div>
