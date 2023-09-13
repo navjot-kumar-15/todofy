@@ -1,6 +1,7 @@
 {
   "name": "todofy",
   "version": "0.1.0",
+  "proxy": "https://todofy-eight.vercel.app",
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.7.17",

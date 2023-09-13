@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://localhost:8080/todo/v1";
+const URL = "/todo/v1";
 
 // Create todo
 export const createTodo = async (todoData, token) => {
@@ -38,7 +38,6 @@ export const updateTodo = async (update, token) => {
   const { data } = await axios.put(`${URL}/${update._id}`, update, config);
   return data;
 };
-
 
 export const updatePatchTodo = async (updateTodo, token) => {
   const config = {

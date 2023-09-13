@@ -9,7 +9,7 @@ const initialState = {
   isError: null,
 };
 
-const URL = "http://localhost:8080/todo/v1/auth";
+const URL = "/todo/v1/auth";
 
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
