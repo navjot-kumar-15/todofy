@@ -9,7 +9,7 @@ const initialState = {
   isError: null,
 };
 
-const URL = "/todo/v1/auth";
+const URL = "https://todofy-eight.vercel.app/todo/v1/auth";
 
 export const registerUser = createAsyncThunk(
   "auth/registerUser",

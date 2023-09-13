@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "/todo/v1";
+const URL = "https://todofy-eight.vercel.app/todo/v1";
 
 // Create todo
 export const createTodo = async (todoData, token) => {
