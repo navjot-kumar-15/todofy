@@ -4,8 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/auth/authSlice";
 import Loader2 from "../components/Loader2";
-
-import Loader from "../components/Loader";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const {
@@ -38,6 +37,7 @@ const Login = () => {
             className="space-y-6"
             onSubmit={handleSubmit((data) => {
               dispatch(loginUser(data));
+              toast("You have successfully logged in.");
             })}
           >
             <div>

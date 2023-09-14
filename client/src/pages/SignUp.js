@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../features/auth/authSlice";
 import Loader2 from "../components/Loader2";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const { isLoading } = useSelector((state) => state.auth);
@@ -25,7 +26,7 @@ const SignUp = () => {
             TodoFy
           </h1>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+            Sign up your account
           </h2>
         </div>
 
@@ -34,6 +35,7 @@ const SignUp = () => {
             className="space-y-6"
             onSubmit={handleSubmit((data) => {
               dispatch(registerUser(data));
+              toast("You have register successfully.");
               reset();
               navigate("/");
             })}

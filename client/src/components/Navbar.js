@@ -5,6 +5,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
 import { logout } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const userNavigation = [{ name: "Sign out" }];
 
@@ -61,10 +62,13 @@ const Navbar = ({ children }) => {
                                   <a
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
-                                      "block px-4 py-2 text-sm  cursor-pointer bg-green-700 mt-3 text-white rounded-md m-1 hover:bg-green-600 transition-all ease-in-out"
+                                      "block px-4 py-2 text-sm  cursor-pointer bg-green-700 mt-3 text-white rounded-md m-1 hover:bg-green-600 transition-all ease-in-out text-center"
                                     )}
                                     onClick={() => {
                                       dispatch(logout());
+                                      toast(
+                                        "You have been successfully logged out"
+                                      );
                                       navigate("/login");
                                     }}
                                   >
@@ -129,6 +133,7 @@ const Navbar = ({ children }) => {
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                         onClick={() => {
                           dispatch(logout());
+                          toast("You have been successfully logged out");
                           navigate("/login");
                         }}
                       >

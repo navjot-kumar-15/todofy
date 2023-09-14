@@ -23,10 +23,12 @@ const Input = () => {
   const { todos, isLoading } = useSelector((state) => state.todo);
 
   const handleSubmitTodo = () => {
-    if (changeValue?.text?.length > 0) {
+    if (changeValue.text?.length > 0) {
       dispatch(createTodoAsyn(changeValue));
-      toast("Todo created😊");
-      setChangeValue("");
+      toast("Todo has been created😊");
+      changeValue.text = "";
+      setChangeValue(changeValue);
+      console.log(changeValue.text);
     } else {
       alert("Please add todo...");
     }
@@ -34,7 +36,7 @@ const Input = () => {
 
   const handleDelete = (e, dataValue) => {
     dispatch(deleteTodoAsync(dataValue._id));
-    toast("Todo deleted successfully.");
+    toast("Todo has been deleted successfully.");
   };
 
   const handleCheckbox = (e, data, index) => {
@@ -68,6 +70,7 @@ const Input = () => {
             className="p-2 outline-none shadow text-gray-500 border-none"
             placeholder="Enter your todo"
             name="text"
+            value={changeValue.text}
             onChange={(e) =>
               setChangeValue({
                 ...changeValue,
@@ -90,7 +93,7 @@ const Input = () => {
           {todos?.map((todo, index) => (
             <>
               <div
-                className="flex w-[20rem] max-sm:w-[15rem] m-auto  max-sm:justify-start gap-2 items-center 
+                className="flex  w-[20rem] max-sm:w-[15rem] m-auto  max-sm:justify-start gap-2 items-center 
                 max-sm:-ml-2 "
                 key={todo._id}
               >
@@ -105,7 +108,7 @@ const Input = () => {
                   <>
                     <input
                       type="text"
-                      className="xl:w-[480px] max-lg:w-[350px] border-1 border-orange-300 bg-gray-200 p-1 max-md:w-[300px] max-md:text-md max-sm:text-sm"
+                      className="xl:w-[480px] max-lg:w-[350px] border-none outline-none bg-gray-200 p-1 max-md:w-[300px] max-md:text-md max-sm:text-sm"
                       value={user?.text}
                       name="text"
                       onChange={(e) => {
@@ -141,7 +144,7 @@ const Input = () => {
                   </>
                 ) : (
                   <p
-                    className={`flex justify-between  max-lg:w-[350px] ${
+                    className={`flex -mt-[.2rem] justify-between  max-lg:w-[350px] ${
                       todo.status === "done" ? "line-through line-clamp-3" : ""
                     }  max-md:w-[300px] max-sm:break-words max-md:text-md max-sm:text-sm`}
                   >
