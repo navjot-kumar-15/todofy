@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const userNavigation = [{ name: "Sign out" }];
 
@@ -27,9 +28,14 @@ const Navbar = ({ children }) => {
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
-                    <div className="flex-shrink-0 italic text-white text-2xl">
+                    <motion.div
+                      initial={0}
+                      animate={{ scale: 1.2 }}
+                      transition={{ delay: 0.5, ease: "easeIn" }}
+                      className="flex-shrink-0 italic text-white text-2xl"
+                    >
                       TodoFy
-                    </div>
+                    </motion.div>
                   </div>
                   <div className="hidden md:block ">
                     <div className="ml-4 flex items-center md:ml-6 ">

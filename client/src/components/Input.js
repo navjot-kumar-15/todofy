@@ -103,12 +103,12 @@ const Input = () => {
             <>
               <div
                 className="flex  w-[20rem] max-sm:w-[15rem] m-auto  max-sm:justify-start gap-2 items-center 
-                max-sm:-ml-2 "
+                max-sm:-ml-2  border-b-[.5px] border-b-gray-600 "
                 key={todo._id}
               >
                 <input
                   type="checkbox"
-                  className="h-3 w-3 ml-4 max-sm:-ml-6 rounded-full"
+                  className="h-3 w-3 ml-4 mb-1 max-sm:-ml-6 rounded-full"
                   checked={todo.status === "done" ? true : false}
                   onChange={(e) => handleCheckbox(e, todo, index)}
                 />
@@ -117,7 +117,7 @@ const Input = () => {
                   <>
                     <input
                       type="text"
-                      className="xl:w-[480px] max-lg:w-[350px] border-none outline-none bg-gray-200 p-1 max-md:w-[300px] max-md:text-md max-sm:text-sm"
+                      className="xl:w-[480px] max-lg:w-[350px] border-none outline-none bg-gray-200 p-1 max-md:w-[300px] max-md:text-md max-sm:text-sm mb-1"
                       value={user?.text}
                       name="text"
                       onChange={(e) => {
@@ -125,7 +125,7 @@ const Input = () => {
                       }}
                     />
                     <button
-                      className="bg-green-500 pl-[.5rem] pr-[.5rem] pt-[.2rem] pb-[.2rem] text-white"
+                      className="bg-green-500 pl-[.5rem] pr-[.5rem] pt-[.2rem] pb-[.2rem] text-white mb-1"
                       onClick={() => {
                         setOpen(!open);
                         dispatch(updateTodoAsync(user));
@@ -141,7 +141,7 @@ const Input = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-6 h-6"
+                        className="w-6 h-6 mb-1"
                       >
                         <path
                           strokeLinecap="round"
@@ -153,9 +153,9 @@ const Input = () => {
                   </>
                 ) : (
                   <p
-                    className={`flex -mt-[.2rem] justify-between  max-lg:w-[350px] ${
+                    className={`flex -mt-[.2rem]  justify-between  max-lg:w-[350px] ${
                       todo.status === "done" ? "line-through line-clamp-3" : ""
-                    }  max-md:w-[300px] max-sm:break-words max-md:text-md max-sm:text-sm`}
+                    }  max-md:w-[300px] max-sm:break-words max-md:text-md max-sm:text-sm  mb-1`}
                   >
                     {todo.text}
                   </p>
@@ -165,11 +165,11 @@ const Input = () => {
                 </span>
                 {/* <input type="text" value={data.value} /> */}
                 <TrashIcon
-                  className="h-4 w-4 max-sm:h-9 max-sm:w-9 max-md:h-5  max-md:w-5 max-lg:h-7 max-lg:w-7 mr-2 ml-2  cursor-pointer"
+                  className="h-4 w-4 max-sm:h-9 mb-1 max-sm:w-9 max-md:h-5  max-md:w-5 max-lg:h-7 max-lg:w-7 mr-2 ml-2  cursor-pointer"
                   onClick={(e) => handleDelete(e, todo)}
                 />
                 <PencilIcon
-                  className="h-4 w-4 max-sm:h-9  max-md:h-5 max-md:w-5 max-lg:h-7 max-lg:w-7  max-sm:w-9 cursor-pointer"
+                  className="h-4 w-4 max-sm:h-9 mb-1  max-md:h-5 max-md:w-5 max-lg:h-7 max-lg:w-7  max-sm:w-9 cursor-pointer"
                   onClick={() => {
                     setOpenEdit(index);
                     setOpen(!open);
