@@ -10,6 +10,7 @@ import {
 } from "../features/todo/todoSlice";
 import Done from "./Done";
 import Loader from "./Loader";
+import { Navigate } from "react-router-dom";
 
 const Input = () => {
   const [open, setOpen] = useState(false);
@@ -20,6 +21,8 @@ const Input = () => {
 
   const dispatch = useDispatch();
   const { todos, isLoading } = useSelector((state) => state.todo);
+
+  const exitingUser = JSON.parse(localStorage.getItem("user"));
 
   const handleSubmitTodo = async () => {
     if (changeValue?.text?.length > 0) {
@@ -56,6 +59,12 @@ const Input = () => {
       setUser(singleTodo[0]);
     }
   }, [todos, id]);
+
+  useEffect(() => {
+    if (!exitingUser) {
+      return <Navigate to="/login" />;
+    }
+  }, [exitingUser]);
 
   return (
     <>
@@ -97,7 +106,7 @@ const Input = () => {
               >
                 <input
                   type="checkbox"
-                  className="h-3 w-3 ml-4 max-sm:-ml-4 rounded-full"
+                  className="h-3 w-3 ml-4 max-sm:-ml-6 rounded-full"
                   checked={todo.status === "done" ? true : false}
                   onChange={(e) => handleCheckbox(e, todo, index)}
                 />

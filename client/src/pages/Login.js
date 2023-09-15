@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,8 +14,9 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
-  const { user, isLoading } = useSelector((state) => state.auth);
-  const existingUser = localStorage.getItem("user");
+  const { user, isLoading, isError } = useSelector((state) => state.auth);
+  const existingUser = JSON.parse(localStorage.getItem("user"));
+
   if (existingUser) {
     return <Navigate to="/" />;
   }
@@ -37,7 +38,6 @@ const Login = () => {
             className="space-y-6"
             onSubmit={handleSubmit((data) => {
               dispatch(loginUser(data));
-              toast("You have successfully logged in.");
             })}
           >
             <div>
