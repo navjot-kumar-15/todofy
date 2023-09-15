@@ -10,9 +10,10 @@ export const createTodo = asyncHander(async (req, res) => {
     throw new Error("Please add a text field");
   }
 
+  const { text } = req.body;
   const saveTodo = new Todo({
     user: req.user.id,
-    text: req.body,
+    text,
   });
   await saveTodo.save();
   res.status(200).json(saveTodo);

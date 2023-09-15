@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import {
   createTodoAsyn,
   deleteTodoAsync,
-  getAllTodoAsyn,
   updateTodoAsync,
   updateTodoPatch,
 } from "../features/todo/todoSlice";
@@ -22,15 +21,15 @@ const Input = () => {
   const dispatch = useDispatch();
   const { todos, isLoading } = useSelector((state) => state.todo);
 
-  const handleSubmitTodo = () => {
-    if (changeValue.text?.length > 0) {
+  const handleSubmitTodo = async () => {
+    if (changeValue?.text?.length > 0) {
       dispatch(createTodoAsyn(changeValue));
       toast("Todo has been created😊");
-      changeValue.text = "";
-      setChangeValue(changeValue);
-      console.log(changeValue.text);
+      // changeValue.text = "";
+      // setChangeValue(changeValue);
+      // console.log(changeValue);
     } else {
-      alert("Please add todo...");
+      toast("Please add something...");
     }
   };
 
@@ -70,7 +69,6 @@ const Input = () => {
             className="p-2 outline-none shadow text-gray-500 border-none"
             placeholder="Enter your todo"
             name="text"
-            value={changeValue.text}
             onChange={(e) =>
               setChangeValue({
                 ...changeValue,
