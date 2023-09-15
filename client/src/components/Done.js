@@ -8,6 +8,7 @@ const Done = () => {
         viewBox="0 0 512 512"
         width="15px"
         height="15px"
+        className="mb-2"
       >
         <path
           fill="#32BEA6"
