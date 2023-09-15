@@ -28,8 +28,9 @@ const Input = () => {
     if (changeValue?.text?.length > 0) {
       dispatch(createTodoAsyn(changeValue));
       toast("Todo has been created😊");
-      // changeValue.text = "";
-      // setChangeValue(changeValue);
+      // console.log(changeValue);
+      changeValue.text = "";
+      setChangeValue(changeValue);
       // console.log(changeValue);
     } else {
       toast("Please add something...");
@@ -78,6 +79,7 @@ const Input = () => {
             className="p-2 outline-none shadow text-gray-500 border-none"
             placeholder="Enter your todo"
             name="text"
+            value={changeValue.text}
             onChange={(e) =>
               setChangeValue({
                 ...changeValue,
