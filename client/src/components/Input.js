@@ -96,7 +96,7 @@ const Input = () => {
         </div>
 
         <div className="lists mt-8  flex flex-col gap-3 justify-center w-[100%] max-sm:p-2 overflow-hidden  ">
-          {todos.length === 0 && (
+          {todos.length === 0 && !isLoading && (
             <p className="text-center">Please add your today goal😊.</p>
           )}
           {todos?.map((todo, index) => (
