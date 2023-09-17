@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/auth/authSlice";
 import Loader2 from "../components/Loader2";
 import { toast } from "react-toastify";
+import GoogleAuth from "../components/GoogleAuth";
 
 const Login = () => {
   const {
@@ -94,6 +95,9 @@ const Login = () => {
               >
                 {isLoading ? <Loader2 /> : " Sign in"}
               </button>
+              <div className="mt-4 w-full">
+                <GoogleAuth />
+              </div>
             </div>
           </form>
 
