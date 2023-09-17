@@ -38,6 +38,9 @@ const Login = () => {
             className="space-y-6"
             onSubmit={handleSubmit((data) => {
               dispatch(loginUser(data));
+              if (user) {
+                toast(`Welcome back ${existingUser.name}`);
+              }
             })}
           >
             <div>

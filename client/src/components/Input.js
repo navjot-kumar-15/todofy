@@ -18,6 +18,7 @@ const Input = () => {
   const [changeValue, setChangeValue] = useState("");
   const [user, setUser] = useState("");
   const [id, setId] = useState("");
+  const [selectedChecked, setSelectedChecked] = useState(-1);
 
   const dispatch = useDispatch();
   const { todos, isLoading } = useSelector((state) => state.todo);
@@ -28,24 +29,21 @@ const Input = () => {
     if (changeValue?.text?.length > 0) {
       dispatch(createTodoAsyn(changeValue));
       toast("Todo has been created😊");
-      // console.log(changeValue);
-      changeValue.text = "";
-      setChangeValue(changeValue);
-      // console.log(changeValue);
+      // changeValue.text = "";
+      setChangeValue("");
     } else {
-      toast("Please add something...");
+      toast("Please write something...");
     }
   };
 
   const handleDelete = (e, dataValue) => {
     dispatch(deleteTodoAsync(dataValue._id));
-    toast("Todo has been deleted successfully.");
+    toast(`"${dataValue.text}" has been deleted successfully.`);
   };
 
   const handleCheckbox = (e, data, index) => {
     let updateData = { ...data, status: "done" };
-
-    if (e?.target?.checked) {
+    if (e.target.checked) {
       dispatch(updateTodoPatch(updateData));
       toast("Hey!! congrats you have completed your goal🎊🎉.");
     } else {
@@ -74,8 +72,8 @@ const Input = () => {
       )}
 
       <div className=" h-full">
-        <div className="flex justify-center gap-3 mt-10 ">
-          <input
+        <div className="flex justify-center gap-3 mt-10 mx-sm:p-2 ">
+          {/* <input
             className="p-2 outline-none shadow text-gray-500 border-none"
             placeholder="Enter your todo"
             name="text"
@@ -92,7 +90,34 @@ const Input = () => {
             onClick={handleSubmitTodo}
           >
             Add task
-          </button>
+          </button> */}
+          <div
+            id="search-bar"
+            className="w-120 bg-white rounded-md shadow-lg z-10"
+          >
+            <form className="flex items-center justify-center p-2">
+              <input
+                type="text"
+                placeholder="Enter your task..."
+                className="w-full rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent placeholder:italic"
+                name="text"
+                value={changeValue.text}
+                onChange={(e) =>
+                  setChangeValue({
+                    ...changeValue,
+                    [e.target.name]: e.target.value,
+                  })
+                }
+              />
+              <button
+                type="submit"
+                className=" bg-gray-800 text-white rounded-md px-4 py-1 ml-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 "
+                onClick={handleSubmitTodo}
+              >
+                Add
+              </button>
+            </form>
+          </div>
         </div>
 
         <div className="lists mt-8  flex flex-col gap-3 justify-center w-[100%] max-sm:p-2 overflow-hidden  ">
@@ -108,7 +133,7 @@ const Input = () => {
               >
                 <input
                   type="checkbox"
-                  className="h-3 w-3 ml-4 mb-1 max-sm:-ml-6 rounded-full"
+                  className="checkbox-wrapper h-3 w-3 ml-4 mb-1 max-sm:-ml-6 "
                   checked={todo.status === "done" ? true : false}
                   onChange={(e) => handleCheckbox(e, todo, index)}
                 />
@@ -154,28 +179,31 @@ const Input = () => {
                 ) : (
                   <p
                     className={`flex -mt-[.2rem]  justify-between  max-lg:w-[350px] ${
-                      todo.status === "done" ? "line-through line-clamp-3" : ""
+                      todo.status === "done"
+                        ? "line-through line-clamp-3 text-gray-400"
+                        : ""
                     }  max-md:w-[300px] max-sm:break-words max-md:text-md max-sm:text-sm  mb-1`}
                   >
                     {todo.text}
                   </p>
                 )}
-                <span className="text-red-500 mt-1 ml-4">
-                  {todo.status === "done" && !open && <Done />}{" "}
-                </span>
-                {/* <input type="text" value={data.value} /> */}
-                <TrashIcon
-                  className="h-4 w-4 max-sm:h-9 mb-1 max-sm:w-9 max-md:h-5  max-md:w-5 max-lg:h-7 max-lg:w-7 mr-2 ml-2  cursor-pointer"
-                  onClick={(e) => handleDelete(e, todo)}
-                />
-                <PencilIcon
-                  className="h-4 w-4 max-sm:h-9 mb-1  max-md:h-5 max-md:w-5 max-lg:h-7 max-lg:w-7  max-sm:w-9 cursor-pointer"
-                  onClick={() => {
-                    setOpenEdit(index);
-                    setOpen(!open);
-                    setId(todo._id);
-                  }}
-                />
+                <div className="flex gap-2">
+                  <span className="text-red-500 mt-1 ml-4">
+                    {todo.status === "done" && !open && <Done />}{" "}
+                  </span>
+                  <TrashIcon
+                    className="h-4 w-4 max-sm:h-5 mb-1 max-sm:w-5 max-md:h-5  max-md:w-5 max-lg:h-5 max-lg:w-5 mr-2 ml-2  cursor-pointer"
+                    onClick={(e) => handleDelete(e, todo)}
+                  />
+                  <PencilIcon
+                    className="h-4 w-4 max-sm:h-5 mb-1  max-md:h-5 max-md:w-5 max-lg:h-5 max-lg:w-5  max-sm:w-5 cursor-pointer"
+                    onClick={() => {
+                      setOpenEdit(index);
+                      setOpen(!open);
+                      setId(todo._id);
+                    }}
+                  />
+                </div>
               </div>
             </>
           ))}
