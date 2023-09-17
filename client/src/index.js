@@ -12,10 +12,10 @@ const id = process.env.CLIENT_ID;
 console.log(id);
 root.render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId="341875603518-2ertsltdknube5p89jcrhokdhov5pbq2.apps.googleusercontent.com">
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </GoogleOAuthProvider>
+    {/* <GoogleOAuthProvider clientId="341875603518-2ertsltdknube5p89jcrhokdhov5pbq2.apps.googleusercontent.com"> */}
+    <Provider store={store}>
+      <App />
+    </Provider>
+    {/* </GoogleOAuthProvider> */}
   </React.StrictMode>
 );

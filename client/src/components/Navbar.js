@@ -120,6 +120,13 @@ const Navbar = ({ children }) => {
                 <div className="border-t border-gray-700 pb-3 pt-4">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
+                      {userInfo?.picture && (
+                        <img
+                          className="h-8 w-8 rounded-full mr-2"
+                          src={userInfo?.picture}
+                          alt=""
+                        />
+                      )}
                       <p className="text-white text-xl max-sm:-ml-6">
                         {" "}
                         {userInfo.name}{" "}

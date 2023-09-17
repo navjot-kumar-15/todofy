@@ -95,9 +95,9 @@ const Login = () => {
               >
                 {isLoading ? <Loader2 /> : " Sign in"}
               </button>
-              <div className="mt-4 w-full">
+              {/* <div className="mt-4 w-full">
                 <GoogleAuth />
-              </div>
+              </div> */}
             </div>
           </form>
 
