@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { TrashIcon, PencilIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  TrashIcon,
+  PencilIcon,
+  XMarkIcon,
+  CheckCircleIcon,
+} from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
@@ -52,6 +57,8 @@ const Input = () => {
     }
   };
 
+  console.log(user);
+
   useEffect(() => {
     if (id) {
       const singleTodo = todos.filter((ele) => ele._id === id);
@@ -73,24 +80,6 @@ const Input = () => {
 
       <div className=" h-full">
         <div className="flex justify-center gap-3 mt-10 mx-sm:p-2 ">
-          {/* <input
-            className="p-2 outline-none shadow text-gray-500 border-none"
-            placeholder="Enter your todo"
-            name="text"
-            value={changeValue.text}
-            onChange={(e) =>
-              setChangeValue({
-                ...changeValue,
-                [e.target.name]: e.target.value,
-              })
-            }
-          />
-          <button
-            className="border-none bg-green-500 shadow-3d text-white p-2"
-            onClick={handleSubmitTodo}
-          >
-            Add task
-          </button> */}
           <div
             id="search-bar"
             className="w-120 bg-white rounded-md shadow-lg z-10"
@@ -120,6 +109,7 @@ const Input = () => {
           </div>
         </div>
 
+        {/* User todo  */}
         <div className="lists mt-8  flex flex-col gap-3 justify-center w-[100%] max-sm:p-2 overflow-hidden  ">
           {todos.length === 0 && !isLoading && (
             <p className="text-center">Please add your today goal😊.</p>
@@ -133,7 +123,7 @@ const Input = () => {
               >
                 <input
                   type="checkbox"
-                  className="checkbox-wrapper h-3 w-3 ml-4 mb-1 max-sm:-ml-6 "
+                  className="checkbox-wrapper h-3 w-3 ml-4 mb-2 max-sm:-ml-6 "
                   checked={todo.status === "done" ? true : false}
                   onChange={(e) => handleCheckbox(e, todo, index)}
                 />
@@ -149,32 +139,38 @@ const Input = () => {
                         setUser({ ...user, [e.target.name]: e.target.value });
                       }}
                     />
-                    <button
-                      className="bg-green-500 pl-[.5rem] pr-[.5rem] pt-[.2rem] pb-[.2rem] text-white mb-1"
-                      onClick={() => {
-                        setOpen(!open);
-                        dispatch(updateTodoAsync(user));
-                        toast("Todo updated successfully.");
-                      }}
-                    >
-                      Edit
-                    </button>
-                    <span onClick={() => setOpen(false)}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6 mb-1"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                    </span>
+
+                    {open && (
+                      <>
+                        <span>
+                          <CheckCircleIcon
+                            className="w-6 h-6 mb-1"
+                            onClick={() => {
+                              setOpen(!open);
+
+                              dispatch(updateTodoAsync(user));
+                              toast("Todo updated successfully.");
+                            }}
+                          />
+                        </span>
+                        <span onClick={() => setOpen(false)}>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6 mb-1"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                        </span>
+                      </>
+                    )}
                   </>
                 ) : (
                   <p
@@ -182,28 +178,30 @@ const Input = () => {
                       todo.status === "done"
                         ? "line-through line-clamp-3 text-gray-400"
                         : ""
-                    }  max-md:w-[300px] max-sm:break-words max-md:text-md max-sm:text-sm  mb-1`}
+                    }  max-md:w-[300px] max-sm:break-words max-md:text-md max-sm:text-[1.1rem]  mb-2`}
                   >
                     {todo.text}
                   </p>
                 )}
-                <div className="flex gap-2">
-                  <span className="text-red-500 mt-1 ml-4">
-                    {todo.status === "done" && !open && <Done />}{" "}
-                  </span>
-                  <TrashIcon
-                    className="h-4 w-4 max-sm:h-5 mb-1 max-sm:w-5 max-md:h-5  max-md:w-5 max-lg:h-5 max-lg:w-5 mr-2 ml-2  cursor-pointer"
-                    onClick={(e) => handleDelete(e, todo)}
-                  />
-                  <PencilIcon
-                    className="h-4 w-4 max-sm:h-5 mb-1  max-md:h-5 max-md:w-5 max-lg:h-5 max-lg:w-5  max-sm:w-5 cursor-pointer"
-                    onClick={() => {
-                      setOpenEdit(index);
-                      setOpen(!open);
-                      setId(todo._id);
-                    }}
-                  />
-                </div>
+                {!open && (
+                  <div className="flex items-center mb-1 gap-2">
+                    <span className="text-red-500 mt-1 ml-4">
+                      {todo.status === "done" && !open && <Done />}{" "}
+                    </span>
+                    <TrashIcon
+                      className="h-4 w-4 max-sm:h-5 mb-1 max-sm:w-5 max-md:h-5  max-md:w-5 max-lg:h-5 max-lg:w-5 mr-2 ml-2  cursor-pointer"
+                      onClick={(e) => handleDelete(e, todo)}
+                    />
+                    <PencilIcon
+                      className="h-4 w-4 max-sm:h-5 mb-1  max-md:h-5 max-md:w-5 max-lg:h-5 max-lg:w-5  max-sm:w-5 cursor-pointer"
+                      onClick={() => {
+                        setOpenEdit(index);
+                        setOpen(!open);
+                        setId(todo._id);
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </>
           ))}
