@@ -30,14 +30,17 @@ const Input = () => {
 
   const exitingUser = JSON.parse(localStorage.getItem("user"));
 
-  const handleSubmitTodo = async () => {
+  const handleSubmitTodo = async (e) => {
+    e.preventDefault();
+    // console.log(changeValue);
+
     if (changeValue?.text?.length > 0) {
       dispatch(createTodoAsyn(changeValue));
       toast("Todo has been created😊");
-      // changeValue.text = "";
-      setChangeValue("");
+      changeValue.text = "";
+      setChangeValue(changeValue);
     } else {
-      toast("Please write something...");
+      toast("Please enter your task...");
     }
   };
 
@@ -56,8 +59,6 @@ const Input = () => {
       dispatch(updateTodoPatch(updateData));
     }
   };
-
-  console.log(user);
 
   useEffect(() => {
     if (id) {
@@ -101,7 +102,7 @@ const Input = () => {
               <button
                 type="submit"
                 className=" bg-gray-800 text-white rounded-md px-4 py-1 ml-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 "
-                onClick={handleSubmitTodo}
+                onClick={(e) => handleSubmitTodo(e)}
               >
                 Add
               </button>
